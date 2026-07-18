@@ -1,3 +1,4 @@
+import AssistantPanel from "@/components/assistant/AssistantPanel";
 import MetricCard from "./MetricCard";
 import RecentActivity from "./RecentActivity";
 
@@ -37,7 +38,13 @@ export default function Dashboard() {
         />
       </div>
 
-      <RecentActivity />
+      <div className="grid gap-6 lg:grid-cols-3">
+        <div className="lg:col-span-2">
+          <RecentActivity />
+        </div>
+
+        <AssistantPanel />
+      </div>
     </div>
   );
 }
