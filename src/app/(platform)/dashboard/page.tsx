@@ -8,6 +8,8 @@ import {
   Zap,
 } from "lucide-react";
 
+import StatCard from "@/components/platform/dashboard/StatCard";
+
 const stats = [
   {
     title: "Active Projects",
@@ -70,28 +72,14 @@ export default function DashboardPage() {
       </section>
 
       <section className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-        {stats.map((stat) => {
-          const Icon = stat.icon;
-
-          return (
-            <div
-              key={stat.title}
-              className="rounded-3xl border border-white/10 bg-white/5 p-6"
-            >
-              <div className="flex items-center justify-between">
-                <Icon className="h-8 w-8 text-cyan-400" />
-
-                <span className="text-3xl font-black">
-                  {stat.value}
-                </span>
-              </div>
-
-              <p className="mt-6 text-zinc-400">
-                {stat.title}
-              </p>
-            </div>
-          );
-        })}
+        {stats.map((stat) => (
+          <StatCard
+            key={stat.title}
+            title={stat.title}
+            value={stat.value}
+            icon={stat.icon}
+          />
+        ))}
       </section>
 
       <section className="grid gap-8 lg:grid-cols-2">
