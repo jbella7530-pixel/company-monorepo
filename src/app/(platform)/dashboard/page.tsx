@@ -1,14 +1,13 @@
-import Link from "next/link";
 import {
   Bot,
   Briefcase,
   TrendingUp,
-  Users,
   Zap,
 } from "lucide-react";
 
-import StatCard from "@/components/platform/dashboard/StatCard";
 import ActivityPanel from "@/components/platform/dashboard/ActivityPanel";
+import QuickActions from "@/components/platform/dashboard/QuickActions";
+import StatCard from "@/components/platform/dashboard/StatCard";
 
 const stats = [
   {
@@ -33,25 +32,6 @@ const stats = [
   },
 ];
 
-const quickActions = [
-  {
-    label: "Create AI Agent",
-    href: "/ai",
-  },
-  {
-    label: "Launch Workspace",
-    href: "/dashboard",
-  },
-  {
-    label: "Open Commerce",
-    href: "/commerce",
-  },
-  {
-    label: "Generate Report",
-    href: "/analytics",
-  },
-];
-
 export default function DashboardPage() {
   return (
     <div className="space-y-10">
@@ -66,8 +46,8 @@ export default function DashboardPage() {
 
         <p className="mt-4 max-w-3xl text-zinc-400">
           Your AI-powered business operating system. Monitor projects,
-          automate workflows, launch products and manage your entire
-          business ecosystem from one place.
+          automate workflows, launch products and manage your business
+          ecosystem from one place.
         </p>
       </section>
 
@@ -84,25 +64,7 @@ export default function DashboardPage() {
 
       <section className="grid gap-8 lg:grid-cols-2">
         <ActivityPanel />
-
-        <div className="rounded-3xl border border-white/10 bg-white/5 p-8">
-          <h2 className="mb-6 flex items-center gap-2 text-2xl font-bold">
-            <Users className="text-cyan-400" />
-            Quick Actions
-          </h2>
-
-          <div className="grid gap-4">
-            {quickActions.map((action) => (
-              <Link
-                key={action.label}
-                href={action.href}
-                className="rounded-xl border border-white/10 bg-black/30 px-5 py-4 transition hover:border-cyan-400"
-              >
-                {action.label}
-              </Link>
-            ))}
-          </div>
-        </div>
+        <QuickActions />
       </section>
     </div>
   );
