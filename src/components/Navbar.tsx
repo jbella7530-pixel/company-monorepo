@@ -1,28 +1,35 @@
+import Link from "next/link";
 import { marketingNavigation } from "@/lib/navigation";
 
 export default function Navbar() {
   return (
-    <header className="fixed top-0 z-50 w-full border-b border-white/10 bg-black/60 backdrop-blur-xl">
+    <header className="fixed inset-x-0 top-0 z-[100] border-b border-white/10 bg-black/70 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
-        <a href="/" className="text-2xl font-black tracking-widest">
+        <Link
+          href="/"
+          className="text-2xl font-black tracking-widest"
+        >
           VELTROVE
-        </a>
+        </Link>
 
-        <nav className="hidden items-center gap-8 text-sm md:flex">
+        <nav className="hidden items-center gap-8 md:flex">
           {marketingNavigation.map((item) => (
-            <a
+            <Link
               key={item.href}
               href={item.href}
-              className="transition hover:text-cyan-400"
+              className="text-sm font-medium transition-colors hover:text-cyan-400"
             >
               {item.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
-        <button className="rounded-xl bg-cyan-400 px-5 py-2 font-semibold text-black transition hover:scale-105">
+        <Link
+          href="/memberships"
+          className="rounded-xl bg-cyan-400 px-5 py-2 font-semibold text-black transition hover:scale-105"
+        >
           Get Started
-        </button>
+        </Link>
       </div>
     </header>
   );
