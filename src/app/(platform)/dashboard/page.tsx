@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {
   Activity,
   Bot,
@@ -31,10 +32,22 @@ const stats = [
 ];
 
 const quickActions = [
-  "Create AI Agent",
-  "Launch Workspace",
-  "Open Commerce",
-  "Generate Report",
+  {
+    label: "Create AI Agent",
+    href: "/ai",
+  },
+  {
+    label: "Launch Workspace",
+    href: "/dashboard",
+  },
+  {
+    label: "Open Commerce",
+    href: "/commerce",
+  },
+  {
+    label: "Generate Report",
+    href: "/analytics",
+  },
 ];
 
 export default function DashboardPage() {
@@ -104,12 +117,13 @@ export default function DashboardPage() {
 
           <div className="grid gap-4">
             {quickActions.map((action) => (
-              <button
-                key={action}
-                className="rounded-xl border border-white/10 bg-black/30 px-5 py-4 text-left transition hover:border-cyan-400"
+              <Link
+                key={action.label}
+                href={action.href}
+                className="rounded-xl border border-white/10 bg-black/30 px-5 py-4 transition hover:border-cyan-400"
               >
-                {action}
-              </button>
+                {action.label}
+              </Link>
             ))}
           </div>
         </div>
