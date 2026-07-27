@@ -1,6 +1,5 @@
 import Link from "next/link";
 import {
-  Activity,
   Bot,
   Briefcase,
   TrendingUp,
@@ -9,6 +8,7 @@ import {
 } from "lucide-react";
 
 import StatCard from "@/components/platform/dashboard/StatCard";
+import ActivityPanel from "@/components/platform/dashboard/ActivityPanel";
 
 const stats = [
   {
@@ -83,19 +83,7 @@ export default function DashboardPage() {
       </section>
 
       <section className="grid gap-8 lg:grid-cols-2">
-        <div className="rounded-3xl border border-white/10 bg-white/5 p-8">
-          <h2 className="mb-6 flex items-center gap-2 text-2xl font-bold">
-            <Activity className="text-cyan-400" />
-            Recent Activity
-          </h2>
-
-          <div className="space-y-4 text-zinc-300">
-            <p>• Genesis workspace updated</p>
-            <p>• AI workflow completed</p>
-            <p>• Marketplace synchronised</p>
-            <p>• Analytics refreshed</p>
-          </div>
-        </div>
+        <ActivityPanel />
 
         <div className="rounded-3xl border border-white/10 bg-white/5 p-8">
           <h2 className="mb-6 flex items-center gap-2 text-2xl font-bold">
