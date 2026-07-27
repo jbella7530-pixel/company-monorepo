@@ -1,57 +1,60 @@
 import {
+  Bot,
   DollarSign,
-  Users,
-  ShoppingCart,
   Package,
-  Briefcase,
-  TrendingUp,
+  ShoppingCart,
+  Users,
+ CheckSquare,
 } from "lucide-react";
 
+import { getDashboardMetrics } from "@/lib/dashboard";
 import RevenueCard from "./RevenueCard";
 
-export default function RevenueGrid() {
+export default async function RevenueGrid() {
+  const metrics = await getDashboardMetrics();
+
   return (
     <section className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
       <RevenueCard
         title="Total Revenue"
-        value="R0"
-        change="+0% this month"
+        value={`R${metrics.revenue.toLocaleString()}`}
+        change="Live database total"
         icon={DollarSign}
       />
 
       <RevenueCard
         title="Customers"
-        value="0"
-        change="+0 new customers"
+        value={metrics.customers.toString()}
+        change="Registered customers"
         icon={Users}
       />
 
       <RevenueCard
         title="Orders"
-        value="0"
-        change="No active orders"
+        value={metrics.orders.toString()}
+        change="Total orders"
         icon={ShoppingCart}
       />
 
       <RevenueCard
         title="Products"
-        value="0"
-        change="No published products"
+        value={metrics.products.toString()}
+        change="Published products"
         icon={Package}
       />
 
       <RevenueCard
-        title="Services"
-        value="0"
-        change="No active services"
-        icon={Briefcase}
+        title="AI Agents"
+        value={metrics.agents.toString()}
+        change="Configured agents"
+        icon={Bot}
       />
 
       <RevenueCard
-        title="Growth"
-        value="0%"
-        change="Awaiting business activity"
-        icon={TrendingUp}
+        title="Tasks"
+        value={metrics.tasks.toString()}
+        change="Tracked tasks"
+        icon={CheckSquare}
       />
     </section>
   );
