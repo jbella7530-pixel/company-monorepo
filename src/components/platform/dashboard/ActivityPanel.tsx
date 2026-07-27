@@ -1,27 +1,48 @@
-import { Activity } from "lucide-react";
+import { getDashboardActivity } from "@/lib/dashboard";
 
-const activities = [
-  "Genesis workspace updated",
-  "AI workflow completed",
-  "Marketplace synchronised",
-  "Analytics refreshed",
-];
+export default async function ActivityPanel() {
+  const activity = await getDashboardActivity();
 
-export default function ActivityPanel() {
   return (
-    <div className="rounded-3xl border border-white/10 bg-white/5 p-8">
-      <h2 className="mb-6 flex items-center gap-2 text-2xl font-bold">
-        <Activity className="text-cyan-400" />
-        Recent Activity
-      </h2>
+    <section className="rounded-2xl border border-zinc-800 bg-zinc-900/50 p-6">
+      <div className="mb-6">
+        <h2 className="text-xl font-bold text-white">
+          Recent Activity
+        </h2>
 
-      <div className="space-y-4 text-zinc-300">
-        {activities.map((activity) => (
-          <p key={activity}>
-            • {activity}
-          </p>
-        ))}
+        <p className="mt-1 text-sm text-zinc-400">
+          Latest events across your VELTROVE workspace.
+        </p>
       </div>
-    </div>
+
+      <div className="space-y-4">
+        {activity.length === 0 ? (
+          <p className="text-sm text-zinc-500">
+            No activity yet.
+          </p>
+        ) : (
+          activity.map((item) => (
+            <div
+              key={`${item.type}-${item.id}`}
+              className="flex items-center justify-between rounded-xl border border-zinc-800 bg-zinc-950/40 p-4"
+            >
+              <div>
+                <p className="font-medium text-white">
+                  {item.title}
+                </p>
+
+                <p className="text-sm text-zinc-500">
+                  {item.type}
+                </p>
+              </div>
+
+              <span className="text-xs text-zinc-500">
+                {item.createdAt.toLocaleDateString()}
+              </span>
+            </div>
+          ))
+        )}
+      </div>
+    </section>
   );
 }
